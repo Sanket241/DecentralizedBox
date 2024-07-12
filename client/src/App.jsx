@@ -6,6 +6,7 @@ import About from './Pages/About'
 import Signin from './Pages/Signin'
 import Footer from './Components/Footer'
 import Error from './Components/Error'
+import Signup from './Pages/Signup'
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => {
         <Route path='/' element={<Home/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/signin' element={<Signin/>} />
+        <Route path='/signup' element={<Signup/>} />
         <Route path='/*' element={<Error/>} />
     </Routes>
     <Footer />
