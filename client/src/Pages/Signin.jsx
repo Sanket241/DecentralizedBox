@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Button, TextInput, Label } from 'flowbite-react'
 
 const Signin = () => {
+
+  const navigate = useNavigate()
   const [user, setUser]=useState({
    
     email: '',
@@ -15,9 +17,23 @@ const Signin = () => {
      [name]:value
     })
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    console.log(user)
+  try {
+    const res = await fetch(`/api/auth/signin`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+      },
+      body:JSON.stringify(user)
+    })
+    const data = await res.json();
+    if(res.ok){
+      navigate('/')
+    }
+  } catch (error) {
+    console.log(error)
+  }
   }
   return (
     <div className='min-h-screen mt-20'>
