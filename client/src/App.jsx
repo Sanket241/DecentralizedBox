@@ -8,6 +8,8 @@ import Footer from './Components/Footer'
 import Error from './Components/Error'
 import Signup from './Pages/Signup'
 import Dashboard from './Pages/Dashboard'
+// import Viewr from './Pages/Viewr'
+// import Upload from './Pages/Upload'
 import Protectedroute from './Components/Protectedroute'
 const App = () => {
   return (

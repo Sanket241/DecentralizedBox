@@ -1,11 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 const About = () => {
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
 
   const handleSignUpClick = () => {
-    navigate('/signup');
+    if (currentUser) {
+      navigate('/');
+    } else{
+      navigate('/signup');
+    }
   };
 
   return (
@@ -55,8 +60,11 @@ const About = () => {
         <p className="text-lg leading-relaxed mb-4">
           To start using Decentralized Box, simply sign up and verify your account. Once verified, you can begin uploading images and engaging with the community by writing about the images shared by others. Join us in creating a secure, decentralized platform for visual content sharing and collaboration.
         </p>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={handleSignUpClick}>
-          Sign Up Now
+        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={handleSignUpClick} >
+          {
+            currentUser ? 'Home' : 'Sign Up Now'
+          }
+
         </button>
       </section>
     </div>

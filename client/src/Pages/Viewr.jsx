@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { TextInput, FileInput, Button } from 'flowbite-react';
 
-// import { useSelector } from 'react-redux';
-// import Upload from './Upload';
-// import Viewr from './Viewr';
+const Viewr = () => {
 
-const Dashboard = () => {
-  // const { currentUser } = useSelector((state) => state.user);
   const [user, setUser] = useState({
     description: "",
     file: null
   });
-  
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'file') {
@@ -46,11 +42,9 @@ const Dashboard = () => {
       console.error('Error uploading file:', error);
     }
   };
- 
 
   return (
-    <>
-        <div className='p-3 max-w-3xl mx-auto min-h-screen'>
+    <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1 className='text-center text-3xl my-7 font-semibold'>Create a Post</h1>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className='flex flex-col gap-4 sm:flex-row justify-between'>
@@ -76,8 +70,7 @@ const Dashboard = () => {
         <Button type='submit'>Publish</Button>
       </form>
     </div>
-    </>
   );
-}
+};
 
-export default Dashboard;
+export default Viewr;
