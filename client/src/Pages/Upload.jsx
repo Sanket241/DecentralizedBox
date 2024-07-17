@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { TextInput, FileInput, Button } from 'flowbite-react';
+import { ethers } from 'ethers'
 
 const Upload = () => {
-  
+
   const [user, setUser] = useState({
     description: "",
     file: null
@@ -39,9 +40,23 @@ const Upload = () => {
 
       const fileUrl = "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash;
       console.log(fileUrl);
+
+      // Store IPFS hash on blockchain
+      await storeHashOnBlockchain(response.data.IpfsHash);
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+  };
+
+  const storeHashOnBlockchain = async (ipfsHash) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contractAddress = "<DEPLOYED_CONTRACT_ADDRESS>";
+    const abi = [
+      "function uploadHash(string memory _ipfsHash) public",
+    ];
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    await contract.uploadHash(ipfsHash);
   };
 
   return (
