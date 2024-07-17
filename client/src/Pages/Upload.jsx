@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TextInput, FileInput, Button } from 'flowbite-react';
 import { ethers } from 'ethers'
+import contractConfig from '../abi/DecentralizedBoxAbi';
 
 const Upload = () => {
 
@@ -9,7 +10,14 @@ const Upload = () => {
     description: "",
     file: null
   });
+  const clickfunc =async()=>{
+    console.log("hii")
+    const provider = new ethers.BrowserProvider(window.ethereum);
 
+    const contract = new ethers.Contract(contractConfig.addr, contractConfig.abi, provider);
+    const d = await contract.getAllHashes();
+    console.log(d);
+  }
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'file') {
@@ -49,13 +57,10 @@ const Upload = () => {
   };
 
   const storeHashOnBlockchain = async (ipfsHash) => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contractAddress = "<DEPLOYED_CONTRACT_ADDRESS>";
-    const abi = [
-      "function uploadHash(string memory _ipfsHash) public",
-    ];
-    const contract = new ethers.Contract(contractAddress, abi, signer);
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+
+    const contract = new ethers.Contract(contractConfig.addr, contractConfig.abi, signer);
     await contract.uploadHash(ipfsHash);
   };
 
@@ -85,6 +90,7 @@ const Upload = () => {
             />
           </div>
           <Button type='submit'>Publish</Button>
+          <Button type='submit' onClick={clickfunc}>get</Button>
         </form>
       </div>
     </>
