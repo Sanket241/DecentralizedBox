@@ -10,7 +10,7 @@ const Upload = () => {
     description: "",
     file: null
   });
-  const clickfunc =async()=>{
+  const clickfunc = async () => {
     console.log("hii")
     const provider = new ethers.BrowserProvider(window.ethereum);
 
@@ -68,7 +68,7 @@ const Upload = () => {
     <>
       <div className='p-3 max-w-3xl mx-auto min-h-screen'>
         <h1 className='text-center text-3xl my-7 font-semibold'>Create a Post</h1>
-        <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+        <form className='flex flex-col gap-4'>
           <div className='flex flex-col gap-4 sm:flex-row justify-between'>
             <TextInput
               type='text'
@@ -89,9 +89,9 @@ const Upload = () => {
               onChange={handleChange}
             />
           </div>
-          <Button type='submit'>Publish</Button>
-          <Button type='submit' onClick={clickfunc}>get</Button>
+          <Button type='submit' onClick={handleSubmit}>Publish</Button>
         </form>
+          <Button type='submit' onClick={clickfunc}>get</Button>
       </div>
     </>
   );
