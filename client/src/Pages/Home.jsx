@@ -28,7 +28,7 @@ const Home = () => {
           {/* Image Section with Caption */}
           <section className="flex justify-center mb-12">
             <div className="relative">
-              <img src='./IPFS.jpg' alt="Decentralized Storage" className="w-full h-auto max-w-lg rounded-lg shadow-md" />
+              <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxv6uW7jt4ilovZbW4esxqsE7OdFMX4z0rLA&s' alt="Decentralized Storage" className="w-full h-auto max-w-lg rounded-lg shadow-md" />
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-center py-2">
                 Decentralized Storage with IPFS
               </div>
@@ -43,7 +43,7 @@ const Home = () => {
               <p className="mb-4">
                 Using IPFS technology, your files are stored across a decentralized network, ensuring security and redundancy.
               </p>
-              <img src='./chain.jpeg' alt="Secure Storage" className="w-full h-auto rounded-lg" />
+              <img src='https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt="Secure Storage" className="w-full h-auto rounded-lg" />
             </div>
 
             {/* Feature Card 2 */}
@@ -52,7 +52,7 @@ const Home = () => {
               <p className="mb-4">
                 Our platform provides an intuitive interface, making it easy to upload, store, and share your files.
               </p>
-              <img src='./easy_to_use.jpg' alt="Easy to Use" className="w-full h-auto rounded-lg" />
+              <img src='https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt="Easy to Use" className="w-full h-auto rounded-lg" />
             </div>
 
             {/* Feature Card 3 */}
@@ -61,7 +61,7 @@ const Home = () => {
               <p className="mb-4">
                 Access your files from anywhere in the world, anytime. All you need is an internet connection.
               </p>
-              <img src='./access_anywhere.jpg' alt="Access Anywhere" className="w-full h-auto rounded-lg" />
+              <img src='https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt="Access Anywhere" className="w-full h-auto rounded-lg" />
             </div>
           </section>
 
@@ -108,15 +108,15 @@ const Home = () => {
               <div className="flex flex-col md:flex-row justify-center md:space-x-8">
                 <div className="bg-white p-6 rounded-lg shadow-md mb-6 md:mb-0">
                   <p className="mb-4">"Decentralized Box has completely changed the way I store my data. The security and ease of use are unparalleled!"</p>
-                  <h3 className="text-xl font-semibold">- Alice Johnson</h3>
+                  <h3 className="text-xl font-semibold">- Mamta</h3>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md mb-6 md:mb-0">
                   <p className="mb-4">"I love the privacy and control I have over my files. Decentralized Box is the future of storage."</p>
-                  <h3 className="text-xl font-semibold">- Bob Smith</h3>
+                  <h3 className="text-xl font-semibold">- Tanya</h3>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <p className="mb-4">"Accessing my files from anywhere without worrying about security is a game-changer. Highly recommend!"</p>
-                  <h3 className="text-xl font-semibold">- Clara Davis</h3>
+                  <h3 className="text-xl font-semibold">- Anurag</h3>
                 </div>
               </div>
             </div>
