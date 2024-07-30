@@ -5,13 +5,14 @@ import Viewer from './Viewer';
 
 const Dashboard = () => {
   const { currentUser } = useSelector((state) => state.user)
- 
+  console.log(currentUser)
+
   return (
     <>
       {
         currentUser && currentUser.rest.isAdmin ? <Upload /> : <Viewer />
       }
-     
+
 
     </>
   );
