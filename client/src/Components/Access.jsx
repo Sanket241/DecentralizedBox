@@ -10,7 +10,8 @@ const Access = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleGiveAccess = async () => {
-    if (!ethers.utils.isAddress(address)) {
+    ethers.is
+    if (!ethers.isAddress(address)) {
         console.log(isAddress)
       setMessage('Please enter a valid Ethereum address.');
       return;
@@ -24,8 +25,8 @@ const Access = () => {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
 
       // We use ethers.js to interact with the smart contract
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(contractAddress, abi, signer);
 
       // Call the addSubOwner function from the contract
