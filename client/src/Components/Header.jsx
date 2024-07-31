@@ -48,6 +48,9 @@ const Header = () => {
                                 <Link to="/dashboard">
                                     <li className='hidden sm:inline text-slate-700 hover:underline' >Dashboard</li>
                                 </Link>
+                                <Link to="/access">
+                                    <li className='hidden sm:inline text-slate-700 hover:underline' >Give Access</li>
+                                </Link>
                                 <li className='hidden sm:inline text-slate-700 hover:underline' onClick={handlesignout}>Sign out</li>
 
                             </>

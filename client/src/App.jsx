@@ -9,6 +9,7 @@ import Error from './Components/Error'
 import Signup from './Pages/Signup'
 import Dashboard from './Pages/Dashboard'
 import Protectedroute from './Components/Protectedroute'
+import Access from './Components/Access'
 const App = () => {
   return (
     <BrowserRouter>
@@ -21,6 +22,8 @@ const App = () => {
         
         <Route element={<Protectedroute />}>
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/access' element={<Access/>} />
+          
         </Route>
         <Route path='/*' element={<Error />} />
       </Routes>
