@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ethers, isAddress } from 'ethers';
+import { ethers } from 'ethers';
 import { Button, TextInput, Alert } from 'flowbite-react';
 import contractDetails from '../abi/DecentralizedBoxAbi';
 
@@ -9,10 +9,8 @@ const Access = () => {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleGiveAccess = async () => {
-    ethers.is
+  const handleAccess = async (action) => {
     if (!ethers.isAddress(address)) {
-        console.log(isAddress)
       setMessage('Please enter a valid Ethereum address.');
       return;
     }
@@ -21,23 +19,22 @@ const Access = () => {
     setMessage('');
 
     try {
-      // Request account access if needed
       await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-      // We use ethers.js to interact with the smart contract
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(contractAddress, abi, signer);
 
-      // Call the addSubOwner function from the contract
-      const transaction = await contract.addSubOwner(address);
+      const transaction = action === 'grant'
+        ? await contract.addSubOwner(address)
+        : await contract.removeSubOwner(address);
       await transaction.wait();
 
-      setMessage('Access granted successfully!');
+      setMessage(`Access ${action === 'grant' ? 'granted' : 'removed'} successfully!`);
       setAddress('');
     } catch (error) {
-      console.error('Error giving access:', error);
-      setMessage('Failed to grant access. Please try again.');
+      console.error(`Error ${action}ing access:`, error);
+      setMessage(`Failed to ${action} access. Please try again.`);
     } finally {
       setIsLoading(false);
     }
@@ -46,7 +43,7 @@ const Access = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">Grant Access</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">Manage Access</h2>
         <TextInput
           type="text"
           placeholder="Enter Address"
@@ -55,11 +52,18 @@ const Access = () => {
           className="w-full p-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <Button
-          onClick={handleGiveAccess}
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+          onClick={() => handleAccess('grant')}
+          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-2"
           disabled={isLoading}
         >
           {isLoading ? 'Processing...' : 'Give Access'}
+        </Button>
+        <Button
+          onClick={() => handleAccess('remove')}
+          className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Processing...' : 'Remove Access'}
         </Button>
         {message && (
           <Alert className="mt-4" color={message.includes('successfully') ? 'success' : 'failure'}>
