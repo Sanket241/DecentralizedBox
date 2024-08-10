@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { signoutSuccess } from '../redux/userSlice/Slice'
+import Upload from '../Pages/Upload'
+import Viewer from '../Pages/Viewer'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Header = () => {
     const { currentUser } = useSelector((state) => state.user);
     const dispatch = useDispatch();
+
 
     const handlesignout = async () => {
         try {
@@ -46,11 +49,15 @@ const Header = () => {
                         currentUser ? (
                             <>
                                 <Link to="/dashboard">
-                                    <li className='hidden sm:inline text-slate-700 hover:underline' >Dashboard</li>
+                                    <li className='hidden sm:inline text-slate-700 hover:underline' >{currentUser.rest.isAdmin ? "Upload" : "Viewer"}</li>
                                 </Link>
-                                <Link to="/access">
-                                    <li className='hidden sm:inline text-slate-700 hover:underline' >Give Access</li>
-                                </Link>
+                                {
+                                    currentUser.rest.isAdmin ?
+                                        <Link to="/access">
+                                            <li className='hidden sm:inline text-slate-700 hover:underline' >Give Access</li>
+                                        </Link> : null
+                                }
+
                                 <li className='hidden sm:inline text-slate-700 hover:underline' onClick={handlesignout}>Sign out</li>
 
                             </>
