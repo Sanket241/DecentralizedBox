@@ -6,11 +6,21 @@ dotenv.config();
 import ConnectDb from './db/conn.js';
 import Authcontroller from './Routes/Authroute.js';
 const port = process.env.PORT || 3000;
+import path from 'path';
+
+const __dirname = path.resolve();
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth',Authcontroller);
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
+
 
 
 app.use((err,req,res,next)=>{
