@@ -21,6 +21,7 @@ const Viewer = () => {
         setFilteredUploads(allUploads);
       } catch (error) {
         console.error('Error fetching upload information from blockchain:', error);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -42,18 +43,22 @@ const Viewer = () => {
 
   return (
     <div className='p-6 max-w-4xl mx-auto min-h-screen bg-gray-100'>
-      <h1 className='text-center text-4xl my-8 font-bold text-gray-800'>View Uploaded Images</h1>
-      <div className='flex justify-center mb-6'>
-        <TextInput
-          placeholder='Search by IPFS hash, name, ID, or description'
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setError(false); // Reset error state on new search input
-          }}
-          className='w-80 mr-2 shadow-md'
-        />
-        <Button onClick={handleSearch} className='bg-teal-500 hover:bg-teal-600 text-white'>Search</Button>
+      <h1 className='text-center text-3xl md:text-4xl my-8 font-bold text-gray-800'>View Uploaded Images</h1>
+      <div className='flex flex-col items-center mb-6'>
+        <div className='flex gap-4'>
+          <TextInput
+            placeholder='Search by IPFS hash, name, ID, or description'
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setError(false); // Reset error state on new search input
+            }}
+            className='w-full md:w-80 shadow-md'
+          />
+          <Button onClick={handleSearch} className='bg-teal-500 hover:bg-teal-600 text-white'>
+            Search
+          </Button>
+        </div>
       </div>
       {loading ? (
         <div className='text-center text-lg text-gray-600'>Loading...</div>
@@ -70,7 +75,7 @@ const Viewer = () => {
                     alt={`IPFS Hash: ${upload.ipfsHash}`}
                     className='w-full h-48 object-cover transition-opacity duration-300 group-hover:opacity-80'
                   />
-                  <div className='absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                  <div className='absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     <a
                       href={`https://gateway.pinata.cloud/ipfs/${upload.ipfsHash}`}
                       download
@@ -82,23 +87,23 @@ const Viewer = () => {
                 </div>
                 <div className='p-4'>
                   <div className='mb-4'>
-                    <p className='text-xl font-bold text-gray-700'>Name:</p>
+                    <p className='text-lg font-bold text-gray-700'>Name:</p>
                     <p className='text-md text-gray-600'>{upload.name}</p>
                   </div>
                   <div className='mb-4'>
-                    <p className='text-xl font-bold text-gray-700'>ID:</p>
+                    <p className='text-lg font-bold text-gray-700'>ID:</p>
                     <p className='text-md text-gray-600'>{upload.id}</p>
                   </div>
                   <div className='mb-4'>
-                    <p className='text-xl font-bold text-gray-700'>Date & Time:</p>
+                    <p className='text-lg font-bold text-gray-700'>Date & Time:</p>
                     <p className='text-md text-gray-600'>{upload.timestamp ? new Date(Number(upload.timestamp) * 1000).toLocaleString() : 'N/A'}</p>
                   </div>
                   <div className='mb-4'>
-                    <p className='text-xl font-bold text-gray-700'>Description:</p>
+                    <p className='text-lg font-bold text-gray-700'>Description:</p>
                     <p className='text-md text-gray-600'>{upload.description}</p>
                   </div>
                   <div>
-                    <p className='text-xl font-bold text-gray-700'>IPFS Hash:</p>
+                    <p className='text-lg font-bold text-gray-700'>IPFS Hash:</p>
                     <a
                       href={`https://gateway.pinata.cloud/ipfs/${upload.ipfsHash}`}
                       target='_blank'

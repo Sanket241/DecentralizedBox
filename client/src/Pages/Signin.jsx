@@ -51,7 +51,7 @@ const Signin = () => {
         <div className="flex-1">
           <Link to='/' className='font-bold dark:text-white text-4xl'>
             <span>Decentralized</span>
-            <span>Box</span>
+            <span className='text-blue-600'>Box</span>
           </Link>
           <p className='text-sm mt-5'>You can sign up with your email and password.</p>
         </div>

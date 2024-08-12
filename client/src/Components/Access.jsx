@@ -41,8 +41,8 @@ const Access = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4 sm:p-6 md:p-8">
+      <div className="bg-white p-6 sm:p-8 md:p-10 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md">
         <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">Manage Access</h2>
         <TextInput
           type="text"

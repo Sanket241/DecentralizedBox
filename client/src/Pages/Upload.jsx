@@ -82,58 +82,62 @@ const Upload = () => {
   };
 
   return (
-    <div className='p-6 max-w-3xl mx-auto min-h-screen bg-gray-50'>
-      <h1 className='text-center text-3xl my-7 font-semibold text-gray-800'>Create a Post</h1>
-      <form className='flex flex-col gap-6 bg-white p-6 rounded-lg shadow-lg' onSubmit={handleSubmit}>
-        <div className='flex flex-col gap-4 sm:flex-row justify-between'>
-          <TextInput
-            type='text'
-            placeholder='Name'
-            value={user.name}
-            name="name"
-            required
-            id='name'
-            className='flex-1 border-gray-300'
-            onChange={handleChange}
-          />
-          <TextInput
-            type='text'
-            placeholder='ID'
-            value={user.id}
-            name="id"
-            required
-            id='id'
-            className='flex-1 border-gray-300'
-            onChange={handleChange}
-          />
-          <TextInput
-            type='text'
-            placeholder='Description'
-            value={user.description}
-            name="description"
-            required
-            id='description'
-            className='flex-1 border-gray-300'
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex gap-4 items-center justify-between border-2 border-teal-400 p-3 rounded-lg bg-gray-100'>
-          <FileInput
-            type='file'
-            accept='image/*'
-            name="file"
-            onChange={handleChange}
-          />
-        </div>
-        <Button type='submit' className='bg-teal-500 hover:bg-teal-600 text-white'>Publish</Button>
-        {uploadStatus && (
-          <p className={`text-center mt-4 text-lg font-semibold ${uploadStatus.includes('failed') ? 'text-red-500' : 'text-green-500'}`}>
-            {uploadStatus}
-          </p>
-        )}
-      </form>
+    <div className="p-6 bg-gray-50 min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+        <h1 className="text-2xl font-semibold text-center mb-6">Create a Post</h1>
+        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+          <div className="flex flex-col gap-4">
+            <TextInput
+              type="text"
+              placeholder="Name"
+              value={user.name}
+              name="name"
+              required
+              id="name"
+              className="border-gray-300"
+              onChange={handleChange}
+            />
+            <TextInput
+              type="text"
+              placeholder="ID"
+              value={user.id}
+              name="id"
+              required
+              id="id"
+              className="border-gray-300"
+              onChange={handleChange}
+            />
+            <TextInput
+              type="text"
+              placeholder="Description"
+              value={user.description}
+              name="description"
+              required
+              id="description"
+              className="border-gray-300"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="border-2 border-teal-400 p-3 rounded-lg bg-gray-100">
+            <FileInput
+              type="file"
+              accept="image/*"
+              name="file"
+              onChange={handleChange}
+            />
+          </div>
+          <Button type="submit" className="bg-teal-500 hover:bg-teal-600 text-white">
+            Publish
+          </Button>
+          {uploadStatus && (
+            <p className={`mt-4 text-lg font-semibold text-center ${uploadStatus.includes('failed') ? 'text-red-500' : 'text-green-500'}`}>
+              {uploadStatus}
+            </p>
+          )}
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default Upload;
