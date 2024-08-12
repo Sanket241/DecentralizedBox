@@ -22,8 +22,21 @@ const Upload = () => {
     }
   };
 
+  const validateForm = () => {
+    const { name, id, description, file } = user;
+    if (!name || !id || !description || !file) {
+      setUploadStatus('All fields are required.');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate the form data
+    if (!validateForm()) return;
+
     setUploadStatus('Uploading...');
 
     const formData = new FormData();
@@ -32,16 +45,17 @@ const Upload = () => {
 
     try {
       // Upload the file to IPFS
-      const response = await axios({
-        method: 'post',
-        url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
-        data: formData,
-        headers: {
-          pinata_api_key: import.meta.env.VITE_PINATA_API_KEY,
-          pinata_secret_api_key: import.meta.env.VITE_PINATA_SECRET_KEY,
-          "Content-Type": "multipart/form-data",
+      const response = await axios.post(
+        "https://api.pinata.cloud/pinning/pinFileToIPFS",
+        formData,
+        {
+          headers: {
+            pinata_api_key: import.meta.env.VITE_PINATA_API_KEY,
+            pinata_secret_api_key: import.meta.env.VITE_PINATA_SECRET_KEY,
+            "Content-Type": "multipart/form-data",
+          }
         }
-      });
+      );
 
       const fileUrl = "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash;
       console.log('File URL:', fileUrl);
